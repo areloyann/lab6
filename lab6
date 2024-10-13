@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string rleCompress(const string &input) {
+    string output = "";
+    int count;
+
+    for (size_t i = 0; i < input.length(); i++) {
+        count = 1;
+        while (i < input.length() - 1 && input[i] == input[i + 1]) {
+            count++;
+            i++;
+        }
+        output += to_string(count) + input[i];
+    }
+
+    return output;
+}
+
+int main() {
+    string data = "AAABBBCCDAA";
+    string compressedData = rleCompress(data);
+
+    cout << "Original: " << data << endl;
+    cout << "Compressed: " << compressedData << endl;
+
+    return 0;
+}
